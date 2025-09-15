@@ -6,7 +6,7 @@ import os
 def main():
     projectType = detectProjectType()
 
-    if projectType=="spring":
+    if projectType=="maven":
         pom_path = "pom.xml"
 
         if not os.path.exists(pom_path):

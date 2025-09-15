@@ -2,14 +2,21 @@ import os
 
 def detectProjectType():
 
-    springBootFileName = "pom.xml"
+    mavenProject = "pom.xml"
+    gradleProject = "build.gradle"
+    gradleKotlinProject = "build.gradle.kts"
+    
     entries = os.listdir('.')
     files = set()
     for entry in entries:
         if os.path.isfile(entry):
             files.add(entry)
-    if springBootFileName in files:
-        return "spring"
+    if mavenProject in files:
+        return "maven"
+    elif gradleProject in files:
+        return "gradle"
+    elif gradleKotlinProject in files:
+        return "gradleKotlin"
     else:
         return "unkonwn"
 
