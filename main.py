@@ -20,6 +20,34 @@ def main():
 
         with open("Dockerfile", "w", encoding="utf-8") as f:
             f.write(docker_file)
+    elif projectType=="gradle":
+        gradle_path = "build.gradle"
+        #safe check an erro might happen the user may accidently delete the file
+        if not os.path.exists(gradle_path):
+            print("build.gradle not found in the current directory.")
+            return
+        with open(gradle_path,"r",encoding="utf-8") as f:
+            project_info = f.read()
+        
+        docker_file = generateDockerFile(project_info)
+        docker_file = formatDockerFile_v2(docker_file)
+
+        with open("Dockerfile", "w", encoding="utf-8") as f:
+            f.write(docker_file)
+            
+    elif projectType=="gradleKotlin":
+        gradle_path = "build.gradle.kts"
+        if not os.path.exists(gradle_path):
+            print("build.gradle.kts not found in the current directory.")
+            return
+        with open(gradle_path,"r",encoding="utf-8") as f:
+            project_info = f.read()
+        
+        docker_file = generateDockerFile(project_info)
+        docker_file = formatDockerFile_v2(docker_file)
+
+        with open("Dockerfile", "w", encoding="utf-8") as f:
+            f.write(docker_file)
 
     print("Dockerfile generated successfully!")
 
