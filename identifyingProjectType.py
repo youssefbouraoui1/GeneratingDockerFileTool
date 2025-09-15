@@ -5,6 +5,7 @@ def detectProjectType():
     mavenProject = "pom.xml"
     gradleProject = "build.gradle"
     gradleKotlinProject = "build.gradle.kts"
+    djangoProject = "manage.py"
     
     entries = os.listdir('.')
     files = set()
@@ -17,6 +18,8 @@ def detectProjectType():
         return "gradle"
     elif gradleKotlinProject in files:
         return "gradleKotlin"
+    elif djangoProject in files:
+        return "django"
     else:
         return "unkonwn"
 
